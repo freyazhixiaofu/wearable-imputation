@@ -103,8 +103,8 @@ def main(run):
     ax.set_yticks(y, [i.replace('_', ' ') for i in tab.index])
     ax.invert_yaxis()
     ax.set_xlabel(f'MAE (bpm) vs {"ECG" if has_real else "accepted PPG HR (provisional)"}', color=INK)
-    ax.legend(frameon=False, fontsize=8, loc='lower right', ncol=1)
-    ax.set_title('Imputer error under each gap-generation protocol', loc='left', fontsize=11, color=INK)
+    ax.legend(frameon=False, fontsize=8, loc='lower center', bbox_to_anchor=(0.5, 1.0), ncol=len(cols))
+    ax.set_title('Imputer error under each gap-generation protocol', loc='left', fontsize=11, color=INK, pad=24)
     fig.tight_layout(); fig.savefig(figs / 'mae_by_protocol.png', dpi=200); plt.close(fig)
 
     # ---- figure: feasibility (supply vs demand per movement bin)
