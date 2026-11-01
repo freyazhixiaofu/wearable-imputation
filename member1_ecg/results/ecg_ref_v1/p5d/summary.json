@@ -1,0 +1,26 @@
+{
+  "participant": "p5d",
+  "fs_ecg": 128.0,
+  "n_samples_ecg": 6664192,
+  "n_rpeaks": 65361,
+  "n_windows": 26029,
+  "ecg_valid_fraction": 0.6783971723846479,
+  "ecg_valid_fraction_in_ppg_rejected": 0.6672536843080916,
+  "ecg_valid_fraction_in_ppg_accepted": 0.7324196809705684,
+  "ppg_vs_ecg_mae_accepted": 6.960088755707239,
+  "ppg_vs_ecg_within_10bpm": 0.839877300613497,
+  "notes": "ECG recordings of this participant are noisy.",
+  "config": {
+    "chunk_s": 300.0,
+    "overlap_s": 5.0,
+    "min_rr_s": 0.2727272727272727,
+    "max_rr_s": 2.0,
+    "quotient_tol": 0.25,
+    "min_good_rr": 4,
+    "min_good_rr_fraction": 0.7,
+    "max_rr_cv": 0.25,
+    "neighbor_halfwidth": 15,
+    "max_neighbor_dev_bpm": 25.0,
+    "rule_version": "ecg_ref_v1"
+  }
+}

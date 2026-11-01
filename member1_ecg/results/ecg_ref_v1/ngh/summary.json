@@ -1,0 +1,26 @@
+{
+  "participant": "ngh",
+  "fs_ecg": 128.0,
+  "n_samples_ecg": 6768640,
+  "n_rpeaks": 61722,
+  "n_windows": 26437,
+  "ecg_valid_fraction": 0.8928774066649015,
+  "ecg_valid_fraction_in_ppg_rejected": 0.8760418414722828,
+  "ecg_valid_fraction_in_ppg_accepted": 0.9280373831775701,
+  "ppg_vs_ecg_mae_accepted": 3.642889998049172,
+  "ppg_vs_ecg_within_10bpm": 0.928877139979859,
+  "notes": "",
+  "config": {
+    "chunk_s": 300.0,
+    "overlap_s": 5.0,
+    "min_rr_s": 0.2727272727272727,
+    "max_rr_s": 2.0,
+    "quotient_tol": 0.25,
+    "min_good_rr": 4,
+    "min_good_rr_fraction": 0.7,
+    "max_rr_cv": 0.25,
+    "neighbor_halfwidth": 15,
+    "max_neighbor_dev_bpm": 25.0,
+    "rule_version": "ecg_ref_v1"
+  }
+}

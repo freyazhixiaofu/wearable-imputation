@@ -21,7 +21,18 @@ python -m unittest discover -s member1_ecg -p "test_*.py"
 
    Failure reasons are recorded in `ecg_reject_reasons`.
 
-The tests use NeuroKit2-simulated ECG at 60 and 110 bpm, a 30 s NaN dropout, and a 60 s noise burst. All four pass. **The thresholds have not yet been checked on real WildPPG ECG.** Before trusting them, plot a few windows from fex, kjd and p5d, the participants whose notes flag noisy ECG.
+The tests use NeuroKit2-simulated ECG at 60 and 110 bpm, a 30 s NaN dropout, and a 60 s noise burst. All four pass.
+
+## Results on WildPPG (`results/ecg_ref_v1/coverage_audit.csv`, `ppg_vs_ecg_check.csv`)
+
+- **ECG coverage.** 86–100% of windows have a valid ECG HR for 13 of the 16 participants. The exceptions are fex (55%), p5d (68%) and kjd (86%), which matches the dataset notes that flag noisy ECG for these three. Coverage inside PPG-rejected windows is nearly identical to overall coverage, so the full real-gap evaluation is feasible and the short-span fallback isn't needed.
+- **The ECG reference is trustworthy where it disagrees with PPG.** In the largest disagreements (p9p, qm9) the raw ECG is clean, with exactly one detected R-peak per beat.
+- **The PPG rule `ppg_only_dev_v1` accepts many wrong HRs.** Pooled over participants, 8.8% of accepted windows read about half the ECG HR. The spectral and autocorrelation estimates both lock onto the sub-harmonic, so their agreement check passes. Wrist-vs-ECG MAE on accepted windows ranges from 1.5 bpm (fex) to 31 bpm (p9p); for 6 of 16 participants more than 25% of accepted windows are over 10 bpm off.
+- **It also rejects many correct ones.** In 20–84% of PPG-rejected windows with valid ECG, the candidate wrist HR was already within 10 bpm of ECG.
+
+The next step is to recalibrate the PPG thresholds on development participants against `hr_ecg`. One option is a harmonic check that compares spectral power at 2f against f. Then re-run the harness, because the rule defines the real gaps.
+
+To extract the ECG from the full 1.2 GB `.mat` files into small `<pid>.npz` files, run `extract_ecg.py`. `process_ecg.py --data-dir` accepts either format.
 
 ## Outputs
 

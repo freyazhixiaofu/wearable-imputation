@@ -1,0 +1,26 @@
+{
+  "participant": "k2s",
+  "fs_ecg": 128.0,
+  "n_samples_ecg": 7018496,
+  "n_rpeaks": 68470,
+  "n_windows": 27413,
+  "ecg_valid_fraction": 0.9980666107321344,
+  "ecg_valid_fraction_in_ppg_rejected": 0.9982788984950368,
+  "ecg_valid_fraction_in_ppg_accepted": 0.9958830794565665,
+  "ppg_vs_ecg_mae_accepted": 11.765892947670906,
+  "ppg_vs_ecg_within_10bpm": 0.6345597354278627,
+  "notes": "The wrist device experienced an interruption in recording of 53 minutes in legth. Index 3786940 to 4194811 of all data from the wrist should be excluded from analysis (Matlab-indexing, starting at 1, including end).",
+  "config": {
+    "chunk_s": 300.0,
+    "overlap_s": 5.0,
+    "min_rr_s": 0.2727272727272727,
+    "max_rr_s": 2.0,
+    "quotient_tol": 0.25,
+    "min_good_rr": 4,
+    "min_good_rr_fraction": 0.7,
+    "max_rr_cv": 0.25,
+    "neighbor_halfwidth": 15,
+    "max_neighbor_dev_bpm": 25.0,
+    "rule_version": "ecg_ref_v1"
+  }
+}

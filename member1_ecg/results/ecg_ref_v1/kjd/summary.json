@@ -1,0 +1,26 @@
+{
+  "participant": "kjd",
+  "fs_ecg": 128.0,
+  "n_samples_ecg": 6169600,
+  "n_rpeaks": 58375,
+  "n_windows": 24097,
+  "ecg_valid_fraction": 0.8614350334066482,
+  "ecg_valid_fraction_in_ppg_rejected": 0.8497098258955373,
+  "ecg_valid_fraction_in_ppg_accepted": 0.9184716476028231,
+  "ppg_vs_ecg_mae_accepted": 5.636995875728818,
+  "ppg_vs_ecg_within_10bpm": 0.8585055643879174,
+  "notes": "ECG recordings of this participant are noisy.",
+  "config": {
+    "chunk_s": 300.0,
+    "overlap_s": 5.0,
+    "min_rr_s": 0.2727272727272727,
+    "max_rr_s": 2.0,
+    "quotient_tol": 0.25,
+    "min_good_rr": 4,
+    "min_good_rr_fraction": 0.7,
+    "max_rr_cv": 0.25,
+    "neighbor_halfwidth": 15,
+    "max_neighbor_dev_bpm": 25.0,
+    "rule_version": "ecg_ref_v1"
+  }
+}

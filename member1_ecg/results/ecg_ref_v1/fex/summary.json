@@ -1,0 +1,26 @@
+{
+  "participant": "fex",
+  "fs_ecg": 128.0,
+  "n_samples_ecg": 6162432,
+  "n_rpeaks": 38289,
+  "n_windows": 24069,
+  "ecg_valid_fraction": 0.5515393244422286,
+  "ecg_valid_fraction_in_ppg_rejected": 0.4620843189091415,
+  "ecg_valid_fraction_in_ppg_accepted": 0.6841670964414647,
+  "ppg_vs_ecg_mae_accepted": 1.5159214644450916,
+  "ppg_vs_ecg_within_10bpm": 0.9879390924167044,
+  "notes": "ECG recordings of this participant are noisy.",
+  "config": {
+    "chunk_s": 300.0,
+    "overlap_s": 5.0,
+    "min_rr_s": 0.2727272727272727,
+    "max_rr_s": 2.0,
+    "quotient_tol": 0.25,
+    "min_good_rr": 4,
+    "min_good_rr_fraction": 0.7,
+    "max_rr_cv": 0.25,
+    "neighbor_halfwidth": 15,
+    "max_neighbor_dev_bpm": 25.0,
+    "rule_version": "ecg_ref_v1"
+  }
+}

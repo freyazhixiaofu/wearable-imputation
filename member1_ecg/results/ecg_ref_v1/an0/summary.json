@@ -1,0 +1,26 @@
+{
+  "participant": "an0",
+  "fs_ecg": 128.0,
+  "n_samples_ecg": 5679104,
+  "n_rpeaks": 56572,
+  "n_windows": 22181,
+  "ecg_valid_fraction": 0.9779090212343898,
+  "ecg_valid_fraction_in_ppg_rejected": 0.9698053568457827,
+  "ecg_valid_fraction_in_ppg_accepted": 0.9874987695639335,
+  "ppg_vs_ecg_mae_accepted": 3.325764036558731,
+  "ppg_vs_ecg_within_10bpm": 0.9318181818181818,
+  "notes": "The ankle device experienced an interruption in recording of 15 seconds in legth. Index 284544 to 286401 of all data from the wrist should be excluded from analysis (Matlab-indexing, starting at 1, including end).",
+  "config": {
+    "chunk_s": 300.0,
+    "overlap_s": 5.0,
+    "min_rr_s": 0.2727272727272727,
+    "max_rr_s": 2.0,
+    "quotient_tol": 0.25,
+    "min_good_rr": 4,
+    "min_good_rr_fraction": 0.7,
+    "max_rr_cv": 0.25,
+    "neighbor_halfwidth": 15,
+    "max_neighbor_dev_bpm": 25.0,
+    "rule_version": "ecg_ref_v1"
+  }
+}

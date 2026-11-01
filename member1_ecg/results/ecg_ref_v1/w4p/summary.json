@@ -1,0 +1,26 @@
+{
+  "participant": "w4p",
+  "fs_ecg": 128.0,
+  "n_samples_ecg": 6405120,
+  "n_rpeaks": 54886,
+  "n_windows": 25017,
+  "ecg_valid_fraction": 0.9958028540592397,
+  "ecg_valid_fraction_in_ppg_rejected": 0.9952588659207282,
+  "ecg_valid_fraction_in_ppg_accepted": 0.9987261146496815,
+  "ppg_vs_ecg_mae_accepted": 6.863442076039565,
+  "ppg_vs_ecg_within_10bpm": 0.7698979591836734,
+  "notes": "",
+  "config": {
+    "chunk_s": 300.0,
+    "overlap_s": 5.0,
+    "min_rr_s": 0.2727272727272727,
+    "max_rr_s": 2.0,
+    "quotient_tol": 0.25,
+    "min_good_rr": 4,
+    "min_good_rr_fraction": 0.7,
+    "max_rr_cv": 0.25,
+    "neighbor_halfwidth": 15,
+    "max_neighbor_dev_bpm": 25.0,
+    "rule_version": "ecg_ref_v1"
+  }
+}

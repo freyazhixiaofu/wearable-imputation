@@ -46,7 +46,18 @@ def runs(mask):
     return list(zip(np.flatnonzero(edges == 1), np.flatnonzero(edges == -1)))
 
 
+def find_input(data_dir, participant):
+    """Full WildPPG .mat, or an ECG-only extract <pid>.npz made by extract_ecg.py."""
+    for name in (f'WildPPG_Part_{participant}.mat', f'{participant}.npz'):
+        if (Path(data_dir) / name).exists():
+            return Path(data_dir) / name
+    return None
+
+
 def read_ecg(path):
+    if str(path).endswith('.npz'):
+        z = np.load(path)
+        return str(z['id']), str(z['notes']), z['ecg'].astype(float), float(z['fs'])
     d = loadmat(path, variable_names=['id', 'notes', 'sternum'], simplify_cells=True)
     ecg = d['sternum']['ecg']
     notes = d.get('notes', '')
@@ -141,7 +152,7 @@ def window_hr(grid, ecg, fs, peaks, cfg):
 def process(participant, data_dir, out_root, cfg, ppg_results=PPG_RESULTS):
     grid = pd.read_csv(ppg_results / participant / 'windows.csv',
                        usecols=['participant_id', 'window_id', 'start_sample', 'end_sample_exclusive', 'ppg_valid', 'hr_ppg'])
-    pid, notes, ecg, fs = read_ecg(Path(data_dir) / f'WildPPG_Part_{participant}.mat')
+    pid, notes, ecg, fs = read_ecg(find_input(data_dir, participant))
     peaks = detect_rpeaks(ecg, fs, cfg)
     t = window_hr(grid, ecg, fs, peaks, cfg)
     out = Path(out_root) / cfg.rule_version / participant
@@ -172,7 +183,7 @@ def main():
     parts = sorted(p.name for p in PPG_RESULTS.iterdir() if (p / 'windows.csv').exists()) if args.all else [args.participant]
     rows = []
     for p in parts:
-        if not (Path(args.data_dir) / f'WildPPG_Part_{p}.mat').exists():
+        if find_input(args.data_dir, p) is None:
             print(f'skip {p}: raw file not found'); continue
         _, s = process(p, args.data_dir, args.out_dir, cfg)
         rows.append({k: v for k, v in s.items() if k != 'config'})
