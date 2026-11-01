@@ -1,0 +1,32 @@
+{
+  "fast": false,
+  "reps": 3,
+  "frac": 0.1,
+  "seed": 2631,
+  "reference": "ecg",
+  "protocols": [
+    "random_point",
+    "random_block",
+    "replay",
+    "context_matched"
+  ],
+  "participants": [
+    "an0",
+    "e61",
+    "fex",
+    "k2s",
+    "kjd",
+    "l38",
+    "n31",
+    "ngh",
+    "p5d",
+    "p9p",
+    "qm9",
+    "ssx",
+    "trh",
+    "tz8",
+    "u7y",
+    "w4p"
+  ],
+  "train_target": "all"
+}

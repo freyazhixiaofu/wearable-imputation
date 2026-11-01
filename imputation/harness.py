@@ -60,7 +60,12 @@ def run_fold(test_id, frames, cfg, rng):
     train_items = []
     for f in dev:
         obs = f.hr_obs.values.copy()
-        obs[neutral_training_mask(f, rng)] = np.nan
+        hole = neutral_training_mask(f, rng)
+        obs[hole] = np.nan
+        if cfg.get('train_target', 'synthetic') == 'synthetic':
+            # loss only on the synthetic training holes; dev real gaps stay unlabeled so that
+            # no candidate is trained on the real-gap regime it is later evaluated on
+            f = f.assign(ref_valid=f.ref_valid.values & hole)
         train_items.append((f, obs))
     models = [copy.deepcopy(m).fit(train_items, rng) for m in candidates(cfg['fast'])]
 
@@ -115,10 +120,13 @@ def main():
     ap.add_argument('--frac', type=float, default=0.10, help='target hidden fraction of accepted windows')
     ap.add_argument('--folds', default='', help='comma-separated test participants (default: all)')
     ap.add_argument('--seed', type=int, default=2631)
+    ap.add_argument('--train-target', choices=['synthetic', 'all'], default='synthetic',
+                    help="learned imputers' loss on synthetic training holes only (default) or on all "
+                         "missing reference-valid dev windows, including dev real gaps")
     args = ap.parse_args()
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
     frames = load_all()
-    cfg = dict(fast=args.fast, reps=args.reps, frac=args.frac, seed=args.seed,
+    cfg = dict(fast=args.fast, reps=args.reps, train_target=args.train_target, frac=args.frac, seed=args.seed,
                reference='ecg' if ecg_available(frames) else 'ppg_provisional',
                protocols=PROTOCOLS, participants=list(frames))
     (out / 'config.json').write_text(json.dumps(cfg, indent=2))

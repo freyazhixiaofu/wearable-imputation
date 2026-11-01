@@ -56,7 +56,7 @@ All protocols target 10% of the test participant's accepted windows. `match_budg
 | `gbm_ctx`, `gbm_ctx_acc` | gradient-boosted correction to linear interpolation from gap geometry (distance to each edge, gap length, edge values), without and with motion |
 | `gru`, `gru_acc` | 2-layer bidirectional GRU (hidden 32) over the window sequence, without and with motion |
 
-**Neutral training mask.** Every learned model is trained with the same mask: on development participants, 15% of accepted windows are hidden, half as single points and half as Uniform{1..60} blocks. The loss is computed on every missing window that has a valid reference, which includes real gaps once ECG exists. No candidate is trained on any specific evaluation protocol.
+**Neutral training mask.** Every learned model is trained with the same mask: on development participants, 15% of accepted windows are hidden, half as single points and half as Uniform{1..60} blocks. By default (`--train-target synthetic`) the loss is computed only on those synthetic training holes, so no candidate learns from the real-gap regime it is evaluated on. `--train-target all` also trains on dev participants' real gaps; `results/ecg_v1` used that setting, which favours the learned models on real gaps.
 
 **LOPO** (`harness.py`). Within each fold, all of the following are fit on the other 15 participants only:
 - the bin edges,
