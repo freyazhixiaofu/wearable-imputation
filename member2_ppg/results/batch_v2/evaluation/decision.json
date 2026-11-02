@@ -1,0 +1,19 @@
+{
+  "candidate_id": 812,
+  "primary_aggregate_target_met": true,
+  "aggregate_observed_no_loss_vs_initial_v2": true,
+  "all_participants_observed_no_loss": false,
+  "participants_with_observed_loss": [
+    "fex",
+    "p9p"
+  ],
+  "new_windows_macro_and_pooled_targets_met": false,
+  "participants_failing_new_window_targets": [
+    "p9p"
+  ],
+  "thresholds_changed": false,
+  "imputation_training": false,
+  "automatic_promotion": false,
+  "status": "Locked evaluation completed; interpret aggregate and participant-level failures separately",
+  "caveat": "The held-out eight were previously inspected for an earlier v2 and in a descriptive v1 report. This is a locked evaluation of the final candidate, not fresh external validation. No results from this run change thresholds."
+}

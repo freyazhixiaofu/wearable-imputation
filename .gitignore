@@ -229,10 +229,29 @@ member2_ppg/results/optical_features_dev/
 member2_ppg/results/pulse_features_dev/
 member2_ppg/results/subwindow_features_dev/
 
-# Keep generated PPG data local; share only the final v2 settings and manifest.
+# Share final v2 participant tables and summaries; keep other experiments local.
 /member2_ppg/results/*
 !/member2_ppg/results/batch_v2/
 /member2_ppg/results/batch_v2/*
 !/member2_ppg/results/batch_v2/config.json
 !/member2_ppg/results/batch_v2/batch_manifest.json
+!/member2_ppg/results/batch_v2/participant_summary.csv
+!/member2_ppg/results/batch_v2/participant_overview.png
+!/member2_ppg/results/batch_v2/gap_reason_overview.png
+!/member2_ppg/results/batch_v2/motion_overview.png
+!/member2_ppg/results/batch_v2/*/
+/member2_ppg/results/batch_v2/*/*
+!/member2_ppg/results/batch_v2/*/windows.csv
+!/member2_ppg/results/batch_v2/*/gaps.csv
+!/member2_ppg/results/batch_v2/development/selected.json
+!/member2_ppg/results/batch_v2/development/summary.csv
+!/member2_ppg/results/batch_v2/development/by_participant.csv
+!/member2_ppg/results/batch_v2/development/internal_checks.csv
+!/member2_ppg/results/batch_v2/development/development_decision.json
+!/member2_ppg/results/batch_v2/evaluation/manifest.json
+!/member2_ppg/results/batch_v2/evaluation/decision.json
+!/member2_ppg/results/batch_v2/evaluation/summary.csv
+!/member2_ppg/results/batch_v2/evaluation/by_participant.csv
+!/member2_ppg/results/batch_v2/evaluation/paired_changes.csv
+!/member2_ppg/results/batch_v2/evaluation/paired_bootstrap_intervals.csv
 /tmp/

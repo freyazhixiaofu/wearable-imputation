@@ -5,6 +5,8 @@ The current PPG acceptance rule is **final v2**. Start with the
 [batch manifest](results/batch_v2/batch_manifest.json).
 
 Outputs are in `results/batch_v2/<participant>/`, using the same layout as v1.
+All 16 participant window/gap CSVs and the batch overview files are included in
+the shared file list, along with the validation records. Feature caches stay local.
 Acceptance uses PPG alone; ECG supplies calibration and evaluation references.
 The guide records evaluation results and participant-level limitations.
 

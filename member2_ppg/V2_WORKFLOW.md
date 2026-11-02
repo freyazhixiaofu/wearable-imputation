@@ -22,6 +22,9 @@ results/batch_v2/
 
 All 16 participants use this layout, matching `results/batch_v1`. Earlier
 experiments are retained separately under `results/experiments`.
+The shared files include each participant's `windows.csv` and `gaps.csv`, the
+participant summary, three overview figures and the validation records listed
+in the batch manifest. `V2_FILES.txt` contains the complete commit list.
 
 ## Acceptance
 

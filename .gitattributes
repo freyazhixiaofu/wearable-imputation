@@ -3,3 +3,8 @@
 /member2_ppg/ppg_spectral_rule.py -text
 /member2_ppg/results/batch_v2/config.json -text
 /member2_ppg/results/batch_v2/batch_manifest.json -text
+/member2_ppg/results/batch_v2/*/windows.csv -text
+/member2_ppg/results/batch_v2/*/gaps.csv -text
+/member2_ppg/results/batch_v2/participant_summary.csv -text
+/member2_ppg/results/batch_v2/development/** -text
+/member2_ppg/results/batch_v2/evaluation/** -text

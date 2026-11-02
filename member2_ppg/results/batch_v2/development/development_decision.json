@@ -1,0 +1,13 @@
+{
+  "development_only": true,
+  "replace_original_v2": false,
+  "all_eight_selected_observed_no_loss": true,
+  "all_eight_selected_addition_targets_met": true,
+  "internal_subjects_failing": [
+    "k2s",
+    "kjd"
+  ],
+  "full_nested_validation": false,
+  "external_validation": false,
+  "warning": "Strict selection passed observed development safeguards, but an internal left-out subject can still fail; no future no-loss guarantee."
+}

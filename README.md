@@ -15,4 +15,6 @@ python member2_ppg/final_v2.py --verify-rule
 
 V2 outputs are in `member2_ppg/results/batch_v2`, using the same participant
 folder layout as v1. The guide records evaluation results and limitations.
+The shared results include all 16 participants' window/gap CSVs, overview
+figures, participant summary and validation records. Feature caches stay local.
 V1 and earlier experiments are preserved. No imputation training is included.

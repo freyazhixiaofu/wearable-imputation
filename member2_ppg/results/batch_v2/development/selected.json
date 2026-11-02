@@ -1,0 +1,21 @@
+{
+  "candidate_id": 812,
+  "fallback_to_original": false,
+  "selection_participants": [
+    "an0",
+    "e61",
+    "k2s",
+    "kjd",
+    "n31",
+    "qm9",
+    "u7y",
+    "w4p"
+  ],
+  "plan_sha256": "0b38b2120f3731861f4b80ca087f7f5ef23814b4c251db9576100c29445528fd",
+  "config_sha256": "249b0b3761c78d090b2508240cb0e121b9aa025da63eee6070279a456a80b214",
+  "design_used_development_diagnostics": true,
+  "source_sha256": "6cba74cce7a1e3fdc8749a8125fdd586185c6c82eb231f1bd00efafd0f1cc7cc",
+  "rule_source_sha256": "37f418f00e229ee212f1dda641117dac80786eaefb4da1f5b21b5304678b61e7",
+  "heldout_files_loaded": false,
+  "training": false
+}
