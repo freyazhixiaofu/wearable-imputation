@@ -1,0 +1,5 @@
+# Preserve exact bytes for the final v2 rule and settings.
+/member2_ppg/ppg_context_rule.py -text
+/member2_ppg/ppg_spectral_rule.py -text
+/member2_ppg/results/batch_v2/config.json -text
+/member2_ppg/results/batch_v2/batch_manifest.json -text

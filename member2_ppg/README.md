@@ -1,8 +1,21 @@
-# Wrist PPG heart-rate and signal-quality baseline
+# Wrist PPG heart-rate and signal quality
 
-This module converts wrist PPG from WildPPG into window-level heart-rate (HR) estimates and signal-quality indicators (SQI). Accelerometer (ACC) features describe motion. HR estimation and acceptance decisions use PPG alone; ECG is reserved for later accuracy evaluation.
+The current PPG acceptance rule is **final v2**. Start with the
+[guide](V2_WORKFLOW.md), [settings](results/batch_v2/config.json), and
+[batch manifest](results/batch_v2/batch_manifest.json).
 
-The current rule set, `ppg_only_dev_v1`, is a development baseline. Its acceptance labels and gap summaries remain provisional until evaluated against reliable ECG reference windows.
+Outputs are in `results/batch_v2/<participant>/`, using the same layout as v1.
+Acceptance uses PPG alone; ECG supplies calibration and evaluation references.
+The guide records evaluation results and participant-level limitations.
+
+V1 and earlier experiments are preserved. No imputation training is included.
+
+## Preserved V1 reference
+
+The remaining instructions describe the original `ppg_only_dev_v1` baseline.
+Its commands and default paths intentionally remain V1-specific. Use the final-v2
+guide above for current work. The original quality-rule limitations and saved
+results are retained for comparison.
 
 ## Setup and data
 

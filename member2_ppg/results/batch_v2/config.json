@@ -1,0 +1,38 @@
+{
+  "release_name": "v2",
+  "rule_version": "ppg_only_dev_v2",
+  "status": "final",
+  "base_config": {
+    "window_s": 8.0,
+    "stride_s": 2.0,
+    "channel": "ppg_g",
+    "band_low_hz": 0.5,
+    "band_high_hz": 4.0,
+    "hr_min_bpm": 40.0,
+    "hr_max_bpm": 200.0,
+    "search_boundary_margin_bpm": 2.0,
+    "spectral_halfwidth_hz": 0.15,
+    "min_spectral_concentration": 0.1,
+    "min_acf_peak": 0.6,
+    "max_hr_difference_bpm": 12.0,
+    "max_flat_run_s": 0.5,
+    "filter_guard_s": 2.0,
+    "acc_gravity_cutoff_hz": 0.25,
+    "rule_version": "ppg_only_dev_v2",
+    "half_rate_action": "off",
+    "half_rate_power_ratio": 0.25
+  },
+  "context_rule": {
+    "anchor_min_acf": 0.8,
+    "anchor_min_concentration": 0.1,
+    "anchor_max_difference_bpm": 6.0,
+    "radius_s": 120.0,
+    "max_deviation_bpm": 5.0,
+    "anchors_each_side": 2,
+    "anchor_separation_s": 8.0,
+    "candidate_min_acf": 0.3,
+    "candidate_min_concentration": 0.1,
+    "candidate_max_difference_bpm": 40.0,
+    "pulse_support": "none"
+  }
+}

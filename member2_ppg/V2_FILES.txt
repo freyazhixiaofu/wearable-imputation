@@ -1,0 +1,13 @@
+.gitattributes
+.gitignore
+README.md
+member2_ppg/README.md
+member2_ppg/V2_WORKFLOW.md
+member2_ppg/V2_FILES.txt
+member2_ppg/final_v2.py
+member2_ppg/ppg_context_rule.py
+member2_ppg/ppg_spectral_rule.py
+member2_ppg/export_final_v2.py
+member2_ppg/test_final_v2.py
+member2_ppg/results/batch_v2/config.json
+member2_ppg/results/batch_v2/batch_manifest.json
