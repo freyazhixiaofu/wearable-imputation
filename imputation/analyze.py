@@ -48,6 +48,21 @@ def boot_ci(values, n=2000, seed=0):
     return tuple(np.quantile(means, [0.025, 0.975]))
 
 
+ROOT = Path(__file__).resolve().parents[1]
+
+
+def endpoint_table(per):
+    rows = []
+    for proto, g in per.groupby('protocol'):
+        row = dict(protocol=proto)
+        for m in ('spearman', 'calib_abs', 'calib_signed', 'regret'):
+            lo, hi = boot_ci(g[m])
+            row[m] = f'{g[m].mean():.2f} [{lo:.2f}, {hi:.2f}]'
+        rows.append(row)
+    cols = ['spearman', 'calib_abs', 'calib_signed', 'regret']
+    return pd.DataFrame(rows, columns=['protocol'] + cols).set_index('protocol').reindex(PROTO_ORDER)
+
+
 def per_participant(res):
     syn = res[res.protocol != 'real'].groupby(['test_participant', 'protocol', 'imputer']).mae.mean().rename('syn')
     real = res[res.protocol == 'real'].set_index(['test_participant', 'imputer']).mae.rename('real')
@@ -145,19 +160,21 @@ def main(run):
     if has_real:
         per, _ = per_participant(res)
         per.to_csv(run / 'per_participant_metrics.csv', index=False)
-        summ = []
-        for proto, g in per.groupby('protocol'):
-            row = dict(protocol=proto)
-            for m in ('spearman', 'calib_abs', 'calib_signed', 'regret'):
-                lo, hi = boot_ci(g[m])
-                row[m] = f'{g[m].mean():.2f} [{lo:.2f}, {hi:.2f}]'
-            summ.append(row)
-        summ = pd.DataFrame(summ).set_index('protocol').reindex(PROTO_ORDER)
+        summ = endpoint_table(per)
+        # PPG rules tuned on some participants' ECG: also report the participants held out from that tuning
+        sel = ROOT / 'member2_ppg' / 'results' / cfg.get('ppg_batch', 'batch_v1') / 'development' / 'selected.json'
+        heldout_lines = []
+        if sel.exists() and (~per.test_participant.isin(json.loads(sel.read_text())['selection_participants'])).any():
+            tuned = set(json.loads(sel.read_text())['selection_participants'])
+            held = per[~per.test_participant.isin(tuned)]
+            heldout_lines = ['### Only participants held out from PPG-rule tuning', '',
+                             f'{held.test_participant.nunique()} participants: ' + ', '.join(sorted(held.test_participant.unique())), '',
+                             endpoint_table(held).to_markdown(), '']
         pooled_best = tab['real'].idxmin()
         pooled = {c: dict(pick=tab[c].idxmin(), regret=tab.loc[tab[c].idxmin(), 'real'] - tab['real'].min())
                   for c in PROTO_ORDER if c in tab}
         lines += ['## Does the synthetic benchmark predict real-gap performance?', '',
-                  'Per-participant mean with participant-bootstrap 95% CI.', '', summ.to_markdown(), '',
+                  'Per-participant mean with participant-bootstrap 95% CI.', '', summ.to_markdown(), ''] + heldout_lines + [
                   f'Pooled selection: best on real gaps = `{pooled_best}`. ' +
                   '; '.join(f'{k} picks `{v["pick"]}` (regret {v["regret"]:.2f} bpm)' for k, v in pooled.items()), '']
         # scatter synthetic vs real

@@ -15,7 +15,9 @@ import numpy as np
 import pandas as pd
 
 ROOT = Path(__file__).resolve().parents[1]
-PPG_DIR = ROOT / 'member2_ppg' / 'results' / 'batch_v1'
+PPG_RESULTS = ROOT / 'member2_ppg' / 'results'
+PPG_BATCH = 'batch_v2'  # final PPG rule; batch_v1 kept for the sensitivity run
+PPG_DIR = PPG_RESULTS / PPG_BATCH
 ECG_DIR = ROOT / 'member1_ecg' / 'results' / 'ecg_ref_v1'
 ACC_COLS = ['acc_dynamic_rms', 'acc_jerk_rms', 'acc_magnitude_std']
 STRIDE_S = 2.0
@@ -51,7 +53,7 @@ def load_participant(pid, ppg_dir=PPG_DIR, ecg_dir=ECG_DIR, require_ecg=False):
 
 
 def load_all(pids=None, **kw):
-    pids = pids or participants()
+    pids = pids or participants(kw.get('ppg_dir', PPG_DIR))
     return {p: load_participant(p, **kw) for p in pids}
 
 

@@ -37,3 +37,14 @@ To extract the ECG from the full 1.2 GB `.mat` files into small `<pid>.npz` file
 ## Outputs
 
 `results/ecg_ref_v1/<pid>/ecg_windows.csv` and `summary.json`, plus `coverage_audit.csv` across participants. The audit includes the ECG-valid fraction inside PPG-rejected windows (the proposal's coverage audit) and the wrist-PPG vs ECG MAE on accepted windows (a sanity check of the HR extraction).
+
+## PPG v1 vs v2 against ECG (`ppg_vs_ecg.py`)
+
+`python member1_ecg/ppg_vs_ecg.py --ppg-batch batch_v2` writes `results/ecg_ref_v1/ppg_vs_ecg_<batch>.csv`. Means over all 16 participants, on ECG-valid windows:
+
+| Rule | Accepted | MAE on accepted (bpm) | Accepted off by >10 bpm | Accepted at about half HR |
+|---|---|---|---|---|
+| `ppg_only_dev_v1` | 23.6% | 8.9 | 21.0% | 12.4% |
+| `ppg_only_dev_v2` | 15.3% | 3.7 | 6.7% | 5.1% |
+
+v2 was tuned on the ECG of an0, e61, k2s, kjd, n31, qm9, u7y and w4p (see `member2_ppg/results/batch_v2/development/selected.json`), so its accuracy on those eight is not an independent estimate. p9p remains poor under v2 (18.8 bpm, 32% at half HR).

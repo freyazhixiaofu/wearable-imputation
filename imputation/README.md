@@ -1,6 +1,6 @@
 # Gap-generation benchmark: masks, imputers, LOPO harness
 
-This module tests whether a synthetic-gap benchmark predicts which heart-rate imputer works best on real quality-rejection gaps (RQ1/RQ2). It consumes the shared 8 s / 2 s window grid. Wrist HR, acceptance decisions and motion come from `member2_ppg/results/batch_v1/<pid>/windows.csv`. The reference HR comes from `member1_ecg/results/ecg_ref_v1/<pid>/ecg_windows.csv` when it exists.
+This module tests whether a synthetic-gap benchmark predicts which heart-rate imputer works best on real quality-rejection gaps (RQ1/RQ2). It consumes the shared 8 s / 2 s window grid. Wrist HR, acceptance decisions and motion come from `member2_ppg/results/<batch>/<pid>/windows.csv`. The default batch is `batch_v2` (the final PPG rule); pass `--ppg-batch batch_v1` for the original rule. The reference HR comes from `member1_ecg/results/ecg_ref_v1/<pid>/ecg_windows.csv` when it exists.
 
 ## Run
 
@@ -19,7 +19,9 @@ python -m unittest discover -s imputation -p "test_*.py"
 python -m unittest discover -s member1_ecg -p "test_*.py"
 ```
 
-If no ECG results exist, the harness runs in **provisional** mode. Synthetic gaps are then scored against accepted wrist-PPG HR, and the real-gap rows are skipped. `results/provisional_ppg_ref` is such a run. It validates the pipeline, but it cannot answer the research questions.
+If no ECG results exist, the harness runs in **provisional** mode. Synthetic gaps are then scored against accepted wrist-PPG HR, and the real-gap rows are skipped. `results/provisional_ppg_ref` is such a run.
+
+**Runs on this branch:** `ecg_v2` is the main run (PPG v2, synthetic-only training). `ecg_v1_synthtrain` is the same setup on PPG v1, kept as a sensitivity check. `ecg_v1` (v1, trained on dev real gaps too) is superseded. `analyze.py` also reports the endpoints for the eight participants held out from PPG-rule tuning, because the v2 thresholds were chosen with the other eight participants' ECG. It validates the pipeline, but it cannot answer the research questions.
 
 ## Design (what is fixed, and why)
 

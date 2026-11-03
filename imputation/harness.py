@@ -24,7 +24,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from data import STRIDE_S, ecg_available, load_all
+from data import PPG_BATCH, PPG_RESULTS, STRIDE_S, ecg_available, load_all
 from gaps import BIN_NAMES, assign_bin, feasibility_table, motion_bin_edges, real_gaps
 from imputers import candidates
 from masks import PROTOCOLS, make_all_masks, neutral_training_mask
@@ -120,13 +120,14 @@ def main():
     ap.add_argument('--frac', type=float, default=0.10, help='target hidden fraction of accepted windows')
     ap.add_argument('--folds', default='', help='comma-separated test participants (default: all)')
     ap.add_argument('--seed', type=int, default=2631)
+    ap.add_argument('--ppg-batch', default=PPG_BATCH, help='member2_ppg/results/<batch> to use (batch_v2 = final rule)')
     ap.add_argument('--train-target', choices=['synthetic', 'all'], default='synthetic',
                     help="learned imputers' loss on synthetic training holes only (default) or on all "
                          "missing reference-valid dev windows, including dev real gaps")
     args = ap.parse_args()
     out = Path(args.out); out.mkdir(parents=True, exist_ok=True)
-    frames = load_all()
-    cfg = dict(fast=args.fast, reps=args.reps, train_target=args.train_target, frac=args.frac, seed=args.seed,
+    frames = load_all(ppg_dir=PPG_RESULTS / args.ppg_batch)
+    cfg = dict(fast=args.fast, reps=args.reps, ppg_batch=args.ppg_batch, train_target=args.train_target, frac=args.frac, seed=args.seed,
                reference='ecg' if ecg_available(frames) else 'ppg_provisional',
                protocols=PROTOCOLS, participants=list(frames))
     (out / 'config.json').write_text(json.dumps(cfg, indent=2))
